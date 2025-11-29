@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Server Joiner</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; background-color: #2c2f33; color: #fff; }
+        h1 { color: #7289da; }
+        button { 
+            background-color: #7289da; 
+            color: #fff; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background-color 0.3s; 
+        }
+        button:hover { background-color: #5b6eae; }
+        .success { color: #43b581; font-weight: bold; }
+        .error { color: #f04747; font-weight: bold; }
+        #revoke-link { color: #f04747; text-decoration: underline; margin-top: 10px; display: block; }
+    </style>
+</head>
+<body>
+    <h1>Join Our Exclusive Server!</h1>
+    <p id="message"></p>
+
+    <a href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=identify%20guilds.join">
+        <button style="padding: 10px 20px; font-size: 16px;">Authorize & Join Server</button>
+    </a>
+
+    <p style="margin-top: 30px;">
+        <a href="/api/auth/revoke" id="revoke-link" style="display: none;">Revoke My Authorization</a>
+    </p>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status');
+        const revokeLink = document.getElementById('revoke-link');
+        const message = document.getElementById('message');
+
+        if (status === 'joined') {
+            message.className = 'success';
+            message.textContent = '✅ Success! You have been added to the server.';
+            // In a real app, this link would include a user token to identify who to deauthorize
+            revokeLink.style.display = 'block'; 
+        } else if (status === 'deauthorized') {
+            message.className = 'success';
+            message.textContent = '🗑️ Authorization successfully revoked.';
+        }
+    </script>
+</body>
+</html>
