@@ -1,0 +1,15 @@
+{
+  "name": "discord-oauth-joiner",
+  "version": "1.0.0",
+  "description": "Discord OAuth2 flow for server joining and revocation.",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo 'Run vercel dev locally'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "type": "module" 
+  
+}
